@@ -18,8 +18,8 @@ if Rails.env.test?
         @factory_instance = DRbObject.new(nil, "druby://#{host}:#{port}")
       end
 
-      def create(factory_name)
-        remote_factory_port = @factory_instance.get_port_for_factory(factory_name)
+      def create(factory_name, params = {})
+        remote_factory_port = @factory_instance.get_port_for_factory(factory_name, params)
         DRbActiveRecord.new(nil, "druby://#{@host}:#{remote_factory_port}")
       end
 
